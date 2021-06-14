@@ -1,0 +1,37 @@
+[magnify: width 2; height 2]
+
+[align:center]
+NIEUWE BESTELLING.
+[align: left][plain
+@foreach($fl_order['order_items'] as $item)
+[font: a]
+[magnify: width 2; height 2][column: left: {{$item['quantity']}} {{$item['sku']}};      right: {{$item['total_price']}}{{$order['currency']['symbol']}}][plain]
+[magnify: width 1; height 1]@foreach($item['options'] as $option) -  {{$option['value']}}
+@endforeach[plain]
+@endforeach
+-------------------------------------------
+
+Totaal : {{$order['price_total']}}{{$order['currency']['symbol']}}
+Commentaar: {{$order['comment']}}
+ 
+------------------------------------------- 
+
+[magnify: width 1; height 1]
+Bestel nummer: {{$order['pickup_code']}} op {{\\Carbon\\Carbon::parse($order['created'])->tz('Europe/Brussels')->format('j/m G:i')}}
+[magnify: width 2; height 2]
+{{$order['user_firstname']}} {{$order['user_lastname']}}[plain]
+{{$order['user_phone']}}
+[magnify: width 2; height 2]
+@if($order['service'] == 'base')Emporter @ {{\\Carbon\\Carbon::parse($order['pickup_date_string'])->format('j/m G:i')}}
+@endif @if($order['service'] == 'eatin')
+Tafel: {{$order['eatin_location']['name']['all']}}@endif
+@if($order['payment_method'] == 'cash')
+[magnify: width 2; height 2]
+TE BETALEN: {{$order['price_total']}}{{$order['currency']['symbol']}}
+@else Online betaald 
+
+@endif
+
+
+
+[cut: feed; partial]
