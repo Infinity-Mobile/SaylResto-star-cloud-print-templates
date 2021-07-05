@@ -11,7 +11,7 @@ Total : {{$order['price_total']}}{{$order['currency']['symbol']}}
 Commentaire: {{$order['comment']}} 
 ------------------------------------------- 
 [magnify: width 1; height 1]
-Commande numéro : {{$order['pickup_code']}} du {{\Carbon\Carbon::parse($order['created'])->tz('Europe/Brussels')->format('j/m G:i')}}
+Commande numéro : {{$order['pickup_code']}} du {{\Carbon\Carbon::parse($order['created'])->format('j/m G:i')}}
 [magnify: width 2; height 2]
 {{$order['user_firstname']}} {{$order['user_lastname']}}[plain]
 {{$order['user_phone']}}
