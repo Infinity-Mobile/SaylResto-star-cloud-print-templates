@@ -17,12 +17,12 @@ Commentaar: {{$order['comment']}}
 ------------------------------------------- 
 
 [magnify: width 1; height 1]
-Bestel nummer: {{$order['pickup_code']}} op {{\\Carbon\\Carbon::parse($order['created'])->tz('Europe/Brussels')->format('j/m G:i')}}
+Bestel nummer: {{$order['pickup_code']}} op {{\Carbon\Carbon::parse($order['created'])->tz('Europe/Brussels')->format('j/m G:i')}}
 [magnify: width 2; height 2]
 {{$order['user_firstname']}} {{$order['user_lastname']}}[plain]
 {{$order['user_phone']}}
 [magnify: width 2; height 2]
-@if($order['service'] == 'base')Emporter @ {{\\Carbon\\Carbon::parse($order['pickup_date_string'])->format('j/m G:i')}}
+@if($order['service'] == 'base')Emporter @ {{\Carbon\Carbon::parse($order['pickup_date_string'])->format('j/m G:i')}}
 @endif @if($order['service'] == 'eatin')
 Tafel: {{$order['eatin_location']['name']['all']}}@endif
 @if($order['payment_method'] == 'cash')
