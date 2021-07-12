@@ -4,10 +4,20 @@
 NIEUWE BESTELLING.
 [align: left][plain
 @foreach($fl_order['order_items'] as $item)
+@if($item['type'] == "bundle")
 [font: a]
-[magnify: width 2; height 2][column: left: {{$item['quantity']}} {{$item['sku']}};      right: {{$item['total_price']}}{{$order['currency']['symbol']}}][plain]
-[magnify: width 1; height 1]@foreach($item['options'] as $option) -  {{$option['value']}}
+[magnify: width 2; height 2][column: left: {{$item['quantity']}} {!!$item['product_title']!!};      right: {{$item['total_price']}}{{$order['currency']['symbol']}}][plain]
+@foreach($item['bundle'] as $bundle_item) 
+[magnify: width 2; height 1][column: left: {!!$bundle_item['variant_sku']!!}; right: {{$bundle_item['price_variation']}}{{$order['currency']['symbol']}}][plain]
+[magnify: width 2; height 1]@foreach($bundle_item['options'] as $option) -  {{$option['value']}}
 @endforeach[plain]
+@endforeach
+@else
+[font: a]
+[magnify: width 2; height 2][column: left: {{$item['quantity']}} {!!$item['sku']!!};      right: {{$item['total_price']}}{{$order['currency']['symbol']}}][plain]
+[magnify: width 2; height 1]@foreach($item['options'] as $option) -  {{$option['value']}}
+@endforeach[plain]
+@endif
 @endforeach
 -------------------------------------------
 
