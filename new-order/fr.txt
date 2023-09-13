@@ -27,7 +27,12 @@ Commande numéro : {{$order['pickup_code']}} du {{\Carbon\Carbon::parse($order['
 {{$order['user_firstname']}} {{$order['user_lastname']}}[plain]
 {{$order['user_phone']}}
 [magnify: width 2; height 2]
-@if($order['service'] == 'base')Emporter @ {{\Carbon\Carbon::parse($order['pickup_date_string'])->format('j/m G:i')}}
+@if($order['service'] == 'base')
+@if($order['pickup_asap'] )
+A Emporter ASAP
+@else
+Emporter @ {{\Carbon\Carbon::parse($order['pickup_date_string'])->format('j/m G:i')}}
+@endif
 @endif @if($order['service'] == 'eatin')
 Sur place @ Table {{$order['eatin_location']['name']['all']}}@endif
 @if($order['payment_method'] == 'cash')
